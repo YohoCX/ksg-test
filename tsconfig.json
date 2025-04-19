@@ -1,0 +1,31 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"declaration": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "ES2021",
+		"sourceMap": true,
+		"outDir": "./dist",
+		"baseUrl": "./",
+		"incremental": true,
+		"skipLibCheck": true,
+		"strictNullChecks": false,
+		"noImplicitAny": false,
+		"strictBindCallApply": false,
+		"forceConsistentCasingInFileNames": false,
+		"noFallthroughCasesInSwitch": false,
+		"paths": {
+			"@env": ["src/modules/env/index"],
+			"@db": ["src/modules/db/index"],
+			"@cache": ["src/modules/cache/index"],
+			"@controllers": ["src/controllers/index"],
+			"@repositories": ["src/repositories/index"],
+			"@services": ["src/services/index"],
+			"@types": ["src/types.ts"]
+		}
+	},
+	"include": ["src"]
+}
