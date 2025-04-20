@@ -15,7 +15,7 @@ export class Skinport {
 
 		const url = `${this.SKINPORT_BASE_URL}/items?${queryParams.toString()}`;
 		const res = await fetch(url);
-		return res.json();
+		return res.json() as Promise<RawItem[]>;
 	}
 
 	public async updateItemsCache(app_id: number) {
@@ -61,6 +61,15 @@ export class Skinport {
 		if (!items || items.length === 0) {
 			await this.updateItemsCache(app_id);
 		}
-		return Cache.get<MergedItem[]>(`skinport_items_${app_id}`);
+
+		const updatedCacheItems = Cache.get<MergedItem[]>(
+			`skinport_items_${app_id}`,
+		);
+
+		if (!updatedCacheItems) {
+			throw new Error("Failed to fetch items");
+		}
+
+		return updatedCacheItems;
 	}
 }

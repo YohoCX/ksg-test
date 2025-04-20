@@ -1,7 +1,7 @@
 import { DB } from "@db";
 import { Config } from "@env";
-import * as swagger from "@fastify/swagger";
-import * as swaggerUI from "@fastify/swagger-ui";
+import swagger from "@fastify/swagger";
+import swaggerUI from "@fastify/swagger-ui";
 import Fastify from "fastify";
 import { controllerRegistry } from "src/controllers/controller-registry";
 import { errorHandler } from "src/handlers/error-handler";

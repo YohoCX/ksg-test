@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"main": "dist/index.js",
 	"scripts": {
-		"start": "ts-node -r tsconfig-paths/register src/app.ts",
+		"dev": "ts-node -r tsconfig-paths/register src/app.ts",
+		"start": "node dist/app.js",
 		"build": "tsc",
 		"format": "npx @biomejs/biome format --write ./src",
 		"migrate": "ts-node -r tsconfig-paths/register ./src/modules/db/migration.ts",

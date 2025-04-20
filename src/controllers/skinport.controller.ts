@@ -38,12 +38,7 @@ export class Skinport {
 				},
 			},
 			async (request, reply) => {
-				const { app_id } = request.query as { app_id: number };
-
-				if (!app_id) {
-					reply.code(400).send({ error: "app_id is required" });
-					return;
-				}
+				const { app_id = 730 } = request.query as { app_id?: number };
 
 				const items = await this.skinportService.getCachedItems(Number(app_id));
 				reply.send(items);

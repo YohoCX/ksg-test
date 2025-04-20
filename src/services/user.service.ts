@@ -24,7 +24,7 @@ export class User {
 		const amountToAddDecimal = new Decimal(amountToAdd);
 
 		const result = userDecimal.plus(amountToAddDecimal);
-		return result.toString(); // Return the result as a string or any desired format
+		return result.toString();
 	}
 
 	private subtractBalances(
@@ -34,7 +34,10 @@ export class User {
 		const userDecimal = new Decimal(userBalance);
 		const amountToSubtractDecimal = new Decimal(amountToSubtract);
 
+		if (userDecimal.lessThan(amountToSubtractDecimal)) {
+			throw new Error("Insufficient balance");
+		}
 		const result = userDecimal.minus(amountToSubtractDecimal);
-		return result.toString(); // Return the result as a string or any desired format
+		return result.toString();
 	}
 }
