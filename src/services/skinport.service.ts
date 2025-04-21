@@ -58,9 +58,12 @@ export class Skinport {
 
 	public async getCachedItems(app_id: number): Promise<MergedItem[]> {
 		const items = Cache.get<MergedItem[]>(`skinport_items_${app_id}`);
-		if (!items || items.length === 0) {
-			await this.updateItemsCache(app_id);
+
+		if (items && items.length !== 0) {
+			return items;
 		}
+
+		await this.updateItemsCache(app_id);
 
 		const updatedCacheItems = Cache.get<MergedItem[]>(
 			`skinport_items_${app_id}`,

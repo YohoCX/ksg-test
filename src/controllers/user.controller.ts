@@ -57,9 +57,9 @@ export class User {
 					body: {
 						type: "object",
 						properties: {
-							balance: { type: "number" },
+							amount: { type: "number" },
 						},
-						required: ["balance"],
+						required: ["amount"],
 					},
 					response: {
 						200: {
@@ -74,11 +74,11 @@ export class User {
 			},
 			async (request, reply) => {
 				const { id } = request.params as { id: number };
-				const { balance } = request.body as { balance: number };
+				const { amount } = request.body as { amount: number };
 
 				const updatedUser = await this.userService.subtractUserBalance(
 					id,
-					balance,
+					amount,
 				);
 				reply.send(updatedUser);
 			},
