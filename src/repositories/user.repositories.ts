@@ -28,7 +28,7 @@ export class User {
 			UPDATE users
 			SET balance = balance - $1::DECIMAL
 			WHERE id = $2 AND balance >= $1
-			RETURNING balance
+			RETURNING *
 		)
 		SELECT * FROM updated;
 		`;
@@ -39,10 +39,11 @@ export class User {
 			const exists = await pool.query("SELECT 1 FROM users WHERE id = $1", [
 				user_id,
 			]);
-			console.log(exists);
+
 			if (exists.rowCount === 0) {
 				throw new Error("USER_NOT_FOUND");
 			}
+
 			throw new Error("INSUFFICIENT_FUNDS");
 		}
 
